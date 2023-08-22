@@ -59,7 +59,14 @@ En este archivo se implementan más algoritmos de ordenación.
 - `quickSort(array)`: Ordena un arreglo usando el algoritmo Quick Sort.
 - `mergeSort(array)`: Ordena un arreglo usando el algoritmo Merge Sort.
 
-# Package 
+# Package
+
+## Branches (ramas)
+
+El proyecto tiene dos ramas:
+
+- `empty`: Esta rama estará vacía y libre de soluciones de ejercicios.
+- `solution`: Esta rama contendrá las respuestas a los ejercicios.
 
 ## Instalación
 
