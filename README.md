@@ -59,4 +59,59 @@ En este archivo se implementan más algoritmos de ordenación.
 - `quickSort(array)`: Ordena un arreglo usando el algoritmo Quick Sort.
 - `mergeSort(array)`: Ordena un arreglo usando el algoritmo Merge Sort.
 
+# Package 
+
+## Instalación
+
+Para instalar el paquete, puede usar el siguiente comando:
+
+```bash
+npm install 
+```
+
+o de la forma abreviada:
+
+```bash
+npm i 
+```
+
+Fíjate si ya tiene instalado las carpetas y archivo, correspondientes a:
+
+```bash
+/node_modules
+/package-lock.json
+```
+
+## Scripts
+
+El paquete incluye el siguiente script:
+
+### Test
+
+Puede ejecutar pruebas en general con el siguiente comando:
+
+```bash
+npm test
+```
+
+o de forma individual para cada test:
+
+```bash
+npm test 01
+```
+
+(01) número del test, actualmente sólo cuanto con los test:
+
+
+```bash
+npm test 01
+npm test 03
+npm test 04
+npm test 05
+npm test 06
+npm test 07
+npm test 08
+```
+
+This script uses Jest for testing with code coverage disabled (`--collectCoverage=false`).
 
