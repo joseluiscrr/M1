@@ -75,7 +75,7 @@ o de la forma abreviada:
 npm i 
 ```
 
-Fíjate si ya tiene instalado las carpetas y archivo, correspondientes a:
+Fíjese si ya tiene instalado las carpetas y archivo, correspondientes a:
 
 ```bash
 /node_modules
