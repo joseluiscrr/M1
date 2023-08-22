@@ -8,7 +8,12 @@
  */
 function counter() {
   // Aquí va la lógica que retorna una función contador que incrementa el valor con cada invocación.
-  
+  let newCounter = 0
+
+  return function(){
+    newCounter++
+    return newCounter
+  };
 }
 
 /**
