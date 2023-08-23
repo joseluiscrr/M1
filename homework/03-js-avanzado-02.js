@@ -25,7 +25,16 @@ function counter() {
  */
 function cacheFunction(cb) {
   // Aquí va la lógica que retorna una función con memoria caché para el callback.
-  
+  let obj = {}
+
+  return function(arg){
+    if(obj.hasOwnProperty(arg)){
+    return obj[arg]
+    }else {
+      obj[arg] = cb(arg)
+      return obj[arg]
+    }
+  }
 }
 
 // --------------------------------------------------------------------------------------------------   ~ Bind
@@ -48,8 +57,8 @@ function getNombre() {
   return this.nombre;
 }
 
-let getNombreInstructor = getNombre.bind()
-let getNombreAlumno = getNombre.bind()
+let getNombreInstructor = getNombre.bind(instructor)
+let getNombreAlumno = getNombre.bind(alumno)
 
 /**
  * Ejercicio 4
@@ -59,9 +68,9 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
   return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos = crearCadena.bind()
-let textoGuiones = crearCadena.bind()
-let textoUnderscore = crearCadena.bind()
+let textoAsteriscos = crearCadena.bind(null,'*', '*');
+let textoGuiones = crearCadena.bind(null, '-', '-');
+let textoUnderscore = crearCadena.bind(null, '_','_');
 
 
 module.exports = {
