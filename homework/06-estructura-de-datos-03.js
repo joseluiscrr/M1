@@ -26,7 +26,7 @@ class BinarySearchTree {
    */
   constructor(value) {
     // Constructor de la clase BinarySearchTree.
-    
+    this.root = new Node(value);
   }
 
   /**
@@ -36,9 +36,22 @@ class BinarySearchTree {
    */
   insert(value, node = this.root) {
     // Implementación recursiva de la inserción de un nodo.
-    
-  }
 
+    if(value < node.value){
+      if(!node.left){
+        node.left = new Node(value);
+      } else {
+        this.insert(value, node.left);
+      }
+
+    } else {
+      if(!node.right) {
+        node.right = new Node(value);
+      } else {
+      this.insert(value, node.right);
+      }
+    }
+  }
   /**
    * Retorna la cantidad total de nodos en el árbol.
    * @param {Node} node - Nodo a partir del cual se calculará la cantidad de nodos en el subárbol. Por defecto, se inicia desde el nodo raíz.
@@ -46,7 +59,10 @@ class BinarySearchTree {
    */
   size(node = this.root) {
     // Implementación recursiva del tamaño del árbol.
-    
+    if(!node){
+      return 0;
+    }
+    return 1 + this.size(node.left) + this.size(node.right);
   }
 
   /**
@@ -57,7 +73,17 @@ class BinarySearchTree {
    */
   contains(value, node = this.root) {
     // Implementación recursiva de la búsqueda de un valor.
-    
+    if(!node){
+      return false;
+    }
+    if (value === node.value){
+      return true;
+    }
+    if (value < node.value){
+      return this.contains(value, node.left);
+    } else {
+      return this.contains(value, node.right);
+    }
   }
 
   /**
@@ -69,7 +95,24 @@ class BinarySearchTree {
    */
   depthFirstForEach(order = 'in-order', node = this.root, results = []) {
     // Implementación recursiva del recorrido en profundidad.
-    
+    if(!node){
+      return results;
+    }
+    if (order === 'pre-order') {
+      results.push(node.value);
+    }
+    this.depthFirstForEach(order, node.left, results);
+
+    if (order === 'in-order'){
+      results.push(node.value);
+    }
+    this.depthFirstForEach(order, node.right, results);
+
+    if (order === 'post-order') {
+      results.push(node.value);
+    }
+
+    return results;
   }
 
   /**
@@ -78,7 +121,26 @@ class BinarySearchTree {
    */
   breadthFirstForEach() {
     // Implementación del recorrido en anchura.
-    
+    if (!this.root) {
+      return [];
+    }
+
+    let result = [];
+    let queue = [this.root];
+
+    while (queue.length > 0) {
+      let node = queue.shift();
+      result.push(node.value);
+
+      if (node.left) {
+        queue.push(node.left);
+      }
+      if (node.right) {
+        queue.push(node.right);
+      }
+    }
+
+    return result;
   }
 }
 
@@ -89,7 +151,9 @@ class BinarySearchTree {
  */
 class Node {
   constructor(value) {
-    
+    this.value = value;
+    this.right = null;
+    this.left = null;
   }
 }
 

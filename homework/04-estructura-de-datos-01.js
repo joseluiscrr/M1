@@ -18,7 +18,10 @@
  */
 function nFactorial(n) {
   // Implementación recursiva para el cálculo del factorial.
-  
+  if(n > -1 && n < 2) return 1
+  if(n < 0) return 'mistake'
+
+  return n * nFactorial(n-1)
 }
 
 /**
@@ -29,7 +32,8 @@ function nFactorial(n) {
  */
 function nFibonacci(n) {
   // Implementación recursiva para calcular el número en la posición n de Fibonacci.
-  
+  if(n === 0 || n === 1) return n
+  return nFibonacci(n-1) + nFibonacci(n-2)
 }
 
 /*
@@ -47,28 +51,30 @@ class Queue {
   // Implementación de la clase Queue con sus métodos.
   constructor() {
     // Inicialización de la cola como un arreglo vacío.
-    
+    this.elements = [];
   }
 
   enqueue(item) {
     // Agrega un elemento al final de la cola.
-    
+    this.elements.push(item);
   }
 
   dequeue() {
     // Remueve y devuelve el primer elemento de la cola.
     // Si la cola está vacía, retorna undefined.
-    
+    if(!this.isEmpty()) {
+    return this.elements.shift();
+    }
   }
 
   size() {
     // Retorna el número de elementos en la cola.
-    
+    return this.elements.length;
   }
 
   isEmpty() {
     // Verifica si la cola está vacía.
-    
+    return this.elements.length === 0;
   }
 }
 
