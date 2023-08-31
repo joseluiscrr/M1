@@ -8,7 +8,11 @@
  */
 function counter() {
   // Aquí va la lógica que retorna una función contador que incrementa el valor con cada invocación.
-  
+  let count = 0
+  return function () {
+    count++
+    return count
+  }
 }
 
 /**
@@ -20,8 +24,16 @@ function counter() {
  */
 function cacheFunction(cb) {
   // Aquí va la lógica que retorna una función con memoria caché para el callback.
-  
+  var cache = {};
+	return function(arg) {
+		if (cache.hasOwnProperty(arg)) {
+			return cache[arg];
+		} else {
+			return cache[arg] = cb(arg);
+    }
 }
+}
+
 
 // --------------------------------------------------------------------------------------------------   ~ Bind
 
@@ -43,8 +55,8 @@ function getNombre() {
   return this.nombre;
 }
 
-let getNombreInstructor = getNombre.bind()
-let getNombreAlumno = getNombre.bind()
+let getNombreInstructor = getNombre.bind(instructor)
+let getNombreAlumno = getNombre.bind(alumno)
 
 /**
  * Ejercicio 4
@@ -54,9 +66,9 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
   return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos = crearCadena.bind()
-let textoGuiones = crearCadena.bind()
-let textoUnderscore = crearCadena.bind()
+let textoAsteriscos = crearCadena.bind(null, '*', '*')
+let textoGuiones = crearCadena.bind(null, '-', '-')
+let textoUnderscore = crearCadena.bind(null, '_', '_')
 
 
 module.exports = {

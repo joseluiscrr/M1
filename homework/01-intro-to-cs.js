@@ -6,7 +6,12 @@
  */
 function BinarioADecimal(num) {
   // Aquí va la lógica para convertir el número binario a decimal.
-  
+  let decimal = 0
+
+  for(let i = 0; i < num.length; i++) {
+    decimal+= Math.pow(2, num.length-(i+1))*num[i]
+  }
+  return decimal
 }
 
 /**
@@ -17,7 +22,14 @@ function BinarioADecimal(num) {
  */
 function DecimalABinario(num) {
   // Aquí va la lógica para convertir el número decimal a binario.
+  let binary = ""
+
+  while(num){
+    binary = num %2 + binary
+    num = Math.floor(num/2)
+  }
   
+  return binary
 }
 
 module.exports = {

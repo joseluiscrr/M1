@@ -26,7 +26,11 @@ class BinarySearchTree {
    */
   constructor(value) {
     // Constructor de la clase BinarySearchTree.
-    
+    this.root = new Node(value)
+  }
+
+  console(value) {
+    console.log(this.root)
   }
 
   /**
@@ -37,6 +41,19 @@ class BinarySearchTree {
   insert(value, node = this.root) {
     // Implementación recursiva de la inserción de un nodo.
     
+    if (value < node.value) {
+      if (node.left === null) {
+        node.left = new Node(value)
+      } else {
+        this.insert(value, node.left)
+      }
+    } else {
+      if (node.right === null) {
+        node.right = new Node(value)
+      } else {
+        this.insert(value, node.right)
+      }
+    }
   }
 
   /**
@@ -46,7 +63,11 @@ class BinarySearchTree {
    */
   size(node = this.root) {
     // Implementación recursiva del tamaño del árbol.
-    
+    if (node === null) {
+      return 0
+    }
+
+    return 1 + this.size(node.left) + this.size(node.right)
   }
 
   /**
@@ -57,7 +78,15 @@ class BinarySearchTree {
    */
   contains(value, node = this.root) {
     // Implementación recursiva de la búsqueda de un valor.
-    
+    if (node === null) return false
+
+    if (value === node.value) {
+      return true
+    } else if (value < node.value) {
+      return this.contains(value, node.left)
+    } else {
+      return this.contains(value, node.right)
+    }
   }
 
   /**
@@ -69,7 +98,27 @@ class BinarySearchTree {
    */
   depthFirstForEach(order = 'in-order', node = this.root, results = []) {
     // Implementación recursiva del recorrido en profundidad.
-    
+    if (node) {
+      if (order === 'in-order') {
+        this.depthFirstForEach('in-order', node.left, results)
+        results.push(node.value)
+        this.depthFirstForEach('in-order', node.right, results)
+      }
+
+      if (order === 'pre-order') {
+        results.push(node.value)
+        this.depthFirstForEach('pre-order', node.left, results)
+        this.depthFirstForEach('pre-order', node.right, results)
+      }
+
+      if (order === 'post-order') {
+        this.depthFirstForEach('post-order', node.left, results)
+        this.depthFirstForEach('post-order', node.right, results)
+        results.push(node.value)
+      }
+    }
+
+    return results
   }
 
   /**
@@ -78,7 +127,26 @@ class BinarySearchTree {
    */
   breadthFirstForEach() {
     // Implementación del recorrido en anchura.
-    
+    if (!this.root) {
+      return [];
+    }
+
+    const result = [];
+    const queue = [this.root];
+
+    while (queue.length > 0) {
+      const node = queue.shift();
+      result.push(node.value);
+
+      if (node.left) {
+        queue.push(node.left);
+      }
+      if (node.right) {
+        queue.push(node.right);
+      }
+    }
+
+    return result;
   }
 }
 
@@ -89,7 +157,9 @@ class BinarySearchTree {
  */
 class Node {
   constructor(value) {
-    
+    this.value = value;
+    this.left = null;
+    this.right = null;
   }
 }
 
